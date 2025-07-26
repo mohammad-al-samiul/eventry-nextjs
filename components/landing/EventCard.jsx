@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ActionButton from "../ActionButtons";
+import Link from "next/link";
 
 export default function EventCard() {
   return (
@@ -12,9 +13,9 @@ export default function EventCard() {
       />
 
       <div className="p-3">
-        <a href="./details.html" className="font-bold text-lg">
+        <Link href="/details/1" className="font-bold text-lg">
           Google I/O Extended
-        </a>
+        </Link>
         <p className="text-[#9C9C9C] text-sm mt-1">
           Rangpur, Dhaka, Bangladesh, Rangpur, Bangladesh
         </p>
