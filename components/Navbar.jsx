@@ -7,7 +7,7 @@ export default function Navbar() {
     <nav>
       <div className="container flex justify-between items-center py-4">
         <div className="nav-brand">
-          <a href="index.html">
+          <Link href="/">
             <Image
               src="/assets/logo.svg"
               alt="Eventry"
@@ -15,7 +15,7 @@ export default function Navbar() {
               width={100}
               height={60}
             />
-          </a>
+          </Link>
         </div>
         <ul className="flex gap-4 text-[#9C9C9C]">
           <li>

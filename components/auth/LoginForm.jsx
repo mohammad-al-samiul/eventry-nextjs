@@ -9,6 +9,7 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const { setAuth } = useAuth();
   const router = useRouter();
+
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -16,6 +17,7 @@ const LoginForm = () => {
       const foundUser = await loginUser(formData);
       if (foundUser) {
         setAuth(foundUser);
+        router.push("/");
       } else {
         setError(`User with this email ${formData.get("email")} not found`);
       }

@@ -4,6 +4,7 @@ import {
   replaceMongoIdInArray,
   replaceMongoIdInObject,
 } from "@/utils/replace-mongo-id";
+import mongoose, { mongo, Mongoose } from "mongoose";
 
 async function getAllEvents() {
   const allEvents = await EventModel.find().lean();
@@ -26,4 +27,26 @@ async function findUserByCredentials(credential) {
   return replaceMongoIdInObject(user);
 }
 
-export { getAllEvents, getEventById, createUser, findUserByCredentials };
+async function updateInterest(eventId, authId) {
+  const foundEvent = await EventModel.findById(eventId);
+
+  if (foundEvent) {
+    const foundUsers = foundEvent.interested_ids.find(
+      (id) => id.toString() === authId
+    );
+    if (foundUsers) {
+      foundEvent.interested_ids.pull(new mongoose.Types.ObjectId(authId));
+    } else {
+      foundEvent.interested_ids.push(new mongoose.Types.ObjectId(authId));
+    }
+    await foundEvent.save();
+  }
+}
+
+export {
+  getAllEvents,
+  getEventById,
+  createUser,
+  findUserByCredentials,
+  updateInterest,
+};
