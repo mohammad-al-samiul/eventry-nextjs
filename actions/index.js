@@ -15,9 +15,7 @@ async function loginUser(formData) {
     credential.email = formData.get("email");
     credential.password = formData.get("password");
     const userFound = await findUserByCredentials(credential);
-    if (userFound) {
-      redirect("/");
-    }
+    return userFound;
   } catch (err) {
     throw err;
   }
